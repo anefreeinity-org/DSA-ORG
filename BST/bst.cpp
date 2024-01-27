@@ -1,4 +1,3 @@
-#pragma once
 #include <iostream>
 
 class Node
@@ -82,13 +81,13 @@ private:
                 delete (node);
                 return nullptr;
             }
-            else if (node->right)
+            else if (node->right && !node->left)
             {
                 Node *temp = node->right;
                 delete (node);
                 return temp;
             }
-            else if (node->left)
+            else if (node->left && !node->right)
             {
                 Node *temp = node->left;
                 delete (node);

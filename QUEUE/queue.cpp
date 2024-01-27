@@ -1,11 +1,10 @@
-#pragma once
 #include <iostream>
 
 class Node
 {
 public:
     int data;
-    Node* next;
+    Node *next;
 
     Node()
     {
@@ -23,8 +22,8 @@ public:
 class Queue
 {
 public:
-    Node* head;
-    Node* tail;
+    Node *head;
+    Node *tail;
 
     Queue()
     {
@@ -34,15 +33,15 @@ public:
 
     void Enqueue(int data)
     {
-        if(!head && !tail)
+        if (!head && !tail)
         {
-            Node* newNode = new Node(data);
+            Node *newNode = new Node(data);
             head = newNode;
             tail = newNode;
         }
         else
         {
-            Node* newNode = new Node(data);
+            Node *newNode = new Node(data);
             tail->next = newNode;
             tail = newNode;
         }
@@ -52,35 +51,35 @@ public:
     {
         int retval = -1;
 
-        if(!head && !tail)
+        if (!head && !tail)
         {
             std::cout << "empty queue" << std::endl;
         }
-        else if(head == tail)
+        else if (head == tail)
         {
-            Node* temp = head;
+            Node *temp = head;
             retval = temp->data;
             head = tail = nullptr;
-            delete(temp);
+            delete (temp);
         }
         else
         {
-            Node* temp = head;
+            Node *temp = head;
             retval = temp->data;
             head = head->next;
-            delete(temp);
+            delete (temp);
         }
 
         return retval;
     }
 
-    Node* Find(int data)
+    Node *Find(int data)
     {
-        Node* temp = head;
+        Node *temp = head;
 
-        while(temp)
+        while (temp)
         {
-            if(temp->data == data)
+            if (temp->data == data)
                 return temp;
             temp = temp->next;
         }
@@ -90,10 +89,10 @@ public:
 
     int Size()
     {
-        Node* temp = head;
+        Node *temp = head;
         int count = 0;
 
-        while(temp)
+        while (temp)
         {
             temp = temp->next;
             count++;
@@ -104,9 +103,9 @@ public:
 
     void Display()
     {
-        Node* temp = head;
+        Node *temp = head;
 
-        while(temp)
+        while (temp)
         {
             std::cout << temp->data << std::endl;
             temp = temp->next;
