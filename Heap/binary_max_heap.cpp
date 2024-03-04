@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 
 class BinaryMaxHeap
 {
@@ -27,11 +28,17 @@ private:
         return (childIndx - 1) / 2;
     }
 
-    void Swap(int first, int second)
+    int Swap(int first, int second, bool isDeleting = true)
     {
+        if (isDeleting)
+        {
+            if (first > length - 1 || second > length - 1)
+                return 0;
+        }
         int temp = heapArr[first];
         heapArr[first] = heapArr[second];
         heapArr[second] = temp;
+        return 1;
     }
 
     void MaintainHeigherArchyAfterInsertation(int index)
@@ -45,7 +52,7 @@ private:
 
         if (heapArr[currentParentIndex] < heapArr[index])
         {
-            Swap(index, currentParentIndex);
+            Swap(index, currentParentIndex, false);
             MaintainHeigherArchyAfterInsertation(currentParentIndex);
         }
     }
@@ -62,13 +69,13 @@ private:
 
         if (heapArr[index] < heapArr[leftChildIndex] && heapArr[leftChildIndex] > heapArr[rightChildIndex])
         {
-            Swap(index, leftChildIndex);
-            MaintainHeigherArchyAfterDeletion(leftChildIndex);
+            if (Swap(index, leftChildIndex))
+                MaintainHeigherArchyAfterDeletion(leftChildIndex);
         }
         else if (heapArr[index] < heapArr[leftChildIndex] && heapArr[leftChildIndex] < heapArr[rightChildIndex])
         {
-            Swap(index, rightChildIndex);
-            MaintainHeigherArchyAfterDeletion(rightChildIndex);
+            if (Swap(index, rightChildIndex))
+                MaintainHeigherArchyAfterDeletion(rightChildIndex);
         }
     }
 
@@ -90,7 +97,7 @@ public:
         int temp = heapArr[0];
         Swap(0, length - 1);
         heapArr.pop_back();
-        length--;
+        length -= 1;
         MaintainHeigherArchyAfterDeletion(0);
         return temp;
     }
