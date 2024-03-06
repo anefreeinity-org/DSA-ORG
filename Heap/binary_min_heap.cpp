@@ -67,7 +67,7 @@ private:
         int leftChildIndex = FindLeftChildIndex(index);
         int rightChildIndex = FindRightChildIndex(index);
 
-        if (heapArr[index] > heapArr[leftChildIndex] && heapArr[leftChildIndex] < heapArr[rightChildIndex])
+        if (heapArr[index] > heapArr[leftChildIndex] && heapArr[leftChildIndex] <= heapArr[rightChildIndex])
         {
             if (Swap(index, leftChildIndex))
                 MaintainHeigherArchyAfterDeletion(leftChildIndex);

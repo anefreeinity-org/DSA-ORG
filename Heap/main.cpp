@@ -5,28 +5,28 @@
 int main()
 {
     BinaryMaxHeapMin heap;
-    heap.Insert(1);
     heap.Insert(0);
+    heap.Insert(1);
     heap.Insert(8);
     heap.Insert(4);
     heap.Insert(19);
     heap.Insert(4);
     heap.Insert(6);
 
-    // std::cout << heap.Delete() << std::endl
-    //           << std::endl;
+    std::cout << heap.Delete() << std::endl
+              << std::endl;
 
-    // std::cout << heap.Delete() << std::endl
-    //           << std::endl;
+    std::cout << heap.Delete() << std::endl
+              << std::endl;
 
-    // std::cout << heap.Delete() << std::endl
-    //           << std::endl;
+    std::cout << heap.Delete() << std::endl
+              << std::endl;
 
-    // std::cout << heap.Delete() << std::endl
-    //           << std::endl;
+    std::cout << heap.Delete() << std::endl
+              << std::endl;
 
-    // std::cout << heap.Delete() << std::endl
-    //           << std::endl;
+    std::cout << heap.Delete() << std::endl
+              << std::endl;
 
     // std::cout << heap.Delete() << std::endl
     //           << std::endl;
