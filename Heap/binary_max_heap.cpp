@@ -75,17 +75,6 @@ private:
         int leftChildIndex = FindLeftChildIndex(index);
         int rightChildIndex = FindRightChildIndex(index);
 
-        if (heapArr[index] < heapArr[leftChildIndex] && heapArr[leftChildIndex] > heapArr[rightChildIndex])
-        {
-            if (Swap(index, leftChildIndex))
-                MaintainHeigherArchyAfterDeletion(leftChildIndex);
-        }
-        else if (heapArr[index] < heapArr[leftChildIndex] && heapArr[leftChildIndex] < heapArr[rightChildIndex])
-        {
-            if (Swap(index, rightChildIndex))
-                MaintainHeigherArchyAfterDeletion(rightChildIndex);
-        }
-
         if (leftChildIndex == -1 && rightChildIndex == -1)
         {
             return;
