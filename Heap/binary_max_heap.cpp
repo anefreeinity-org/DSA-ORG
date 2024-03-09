@@ -15,12 +15,20 @@ public:
 private:
     int FindLeftChildIndex(int parentIndx)
     {
-        return (2 * parentIndx + 1);
+        int l_child = (2 * parentIndx + 1);
+        if (l_child < length)
+            return l_child;
+        else
+            return -1;
     }
 
     int FindRightChildIndex(int parentIndx)
     {
-        return (2 * parentIndx + 2);
+        int r_child = (2 * parentIndx + 2);
+        if (r_child < length)
+            return r_child;
+        else
+            return -1;
     }
 
     int FindParentIndex(int childIndx)
@@ -76,6 +84,32 @@ private:
         {
             if (Swap(index, rightChildIndex))
                 MaintainHeigherArchyAfterDeletion(rightChildIndex);
+        }
+
+        if (leftChildIndex == -1 && rightChildIndex == -1)
+        {
+            return;
+        }
+        else if (rightChildIndex == -1)
+        {
+            if (heapArr[index] < heapArr[leftChildIndex])
+            {
+                if (Swap(index, leftChildIndex))
+                    MaintainHeigherArchyAfterDeletion(leftChildIndex);
+            }
+        }
+        else
+        {
+            if (heapArr[index] < heapArr[leftChildIndex] && heapArr[leftChildIndex] >= heapArr[rightChildIndex])
+            {
+                if (Swap(index, leftChildIndex))
+                    MaintainHeigherArchyAfterDeletion(leftChildIndex);
+            }
+            else if (heapArr[index] < heapArr[leftChildIndex] && heapArr[leftChildIndex] <= heapArr[rightChildIndex])
+            {
+                if (Swap(index, rightChildIndex))
+                    MaintainHeigherArchyAfterDeletion(rightChildIndex);
+            }
         }
     }
 
