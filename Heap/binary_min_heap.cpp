@@ -1,13 +1,13 @@
 #include <vector>
 #include <iostream>
 
-class BinaryMaxHeapMin
+class BinaryMinHeap
 {
 public:
     std::vector<int> heapArr;
     int length;
 
-    BinaryMaxHeapMin()
+    BinaryMinHeap()
     {
         length = 0;
     }

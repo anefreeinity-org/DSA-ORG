@@ -4,7 +4,7 @@
 
 int main()
 {
-    BinaryMaxHeapMin heap;
+    BinaryMinHeap heap;
     heap.Insert(0);
     heap.Insert(1);
     heap.Insert(8);
