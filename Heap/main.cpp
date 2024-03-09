@@ -28,11 +28,14 @@ int main()
     std::cout << heap.Delete() << std::endl
               << std::endl;
 
-    // std::cout << heap.Delete() << std::endl
-    //           << std::endl;
+    std::cout << heap.Delete() << std::endl
+                << std::endl;
+
+    std::cout << heap.Delete() << std::endl
+              << std::endl;
     
-    // std::cout << heap.Delete() << std::endl
-    //           << std::endl;
+    std::cout << heap.Delete() << std::endl
+              << std::endl;
     
     // std::cout << heap.Delete() << std::endl
     //           << std::endl;
