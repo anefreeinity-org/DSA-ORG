@@ -1,13 +1,14 @@
 #include <vector>
-#include <iostream>
+#include "./node.cpp"
 
-class BinaryMinHeapMin
+class MaxHeap
 {
 public:
-    std::vector<int> heapArr;
+    std::vector<Node *> heapArr;
+
     int length;
 
-    BinaryMinHeapMin()
+    MaxHeap()
     {
         length = 0;
     }
@@ -43,13 +44,13 @@ private:
             if (first > length - 1 || second > length - 1)
                 return 0;
         }
-        int temp = heapArr[first];
+        Node *temp = heapArr[first];
         heapArr[first] = heapArr[second];
         heapArr[second] = temp;
         return 1;
     }
 
-    void MaintainHeigherArchyAfterInsertion(int index)
+    void MaintainHierArchyAfterInsertion(int index)
     {
         if (index == 0)
         {
@@ -58,14 +59,14 @@ private:
 
         int currentParentIndex = FindParentIndex(index);
 
-        if (heapArr[currentParentIndex] > heapArr[index])
+        if (heapArr[currentParentIndex]->priority < heapArr[index]->priority)
         {
             Swap(index, currentParentIndex, false);
-            MaintainHeigherArchyAfterInsertion(currentParentIndex);
+            MaintainHierArchyAfterInsertion(currentParentIndex);
         }
     }
 
-    void MaintainHeigherArchyAfterDeletion(int index)
+    void MaintainHierArchyAfterDeletion(int index)
     {
         if (index >= length - 1)
         {
@@ -81,33 +82,35 @@ private:
         }
         else if (rightChildIndex == -1)
         {
-            if (heapArr[index] > heapArr[leftChildIndex])
+            if (heapArr[index]->priority < heapArr[leftChildIndex]->priority)
             {
                 if (Swap(index, leftChildIndex))
-                    MaintainHeigherArchyAfterDeletion(leftChildIndex);
+                    MaintainHierArchyAfterDeletion(leftChildIndex);
             }
         }
         else
         {
-            if (heapArr[index] > heapArr[leftChildIndex] && heapArr[leftChildIndex] <= heapArr[rightChildIndex])
+            if (heapArr[index]->priority < heapArr[leftChildIndex]->priority && heapArr[leftChildIndex]->priority >= heapArr[rightChildIndex]->priority)
             {
                 if (Swap(index, leftChildIndex))
-                    MaintainHeigherArchyAfterDeletion(leftChildIndex);
+                    MaintainHierArchyAfterDeletion(leftChildIndex);
             }
-            else if (heapArr[index] > heapArr[leftChildIndex] && heapArr[leftChildIndex] >= heapArr[rightChildIndex])
+            else if (heapArr[index]->priority < heapArr[leftChildIndex]->priority && heapArr[leftChildIndex]->priority <= heapArr[rightChildIndex]->priority)
             {
                 if (Swap(index, rightChildIndex))
-                    MaintainHeigherArchyAfterDeletion(rightChildIndex);
+                    MaintainHierArchyAfterDeletion(rightChildIndex);
             }
         }
     }
 
 public:
-    void Insert(int data)
+    Node *Insert(int data, int priority)
     {
-        heapArr.push_back(data);
+        Node *temp = new Node(data, priority);
+        heapArr.push_back(temp);
         length++;
-        MaintainHeigherArchyAfterInsertion(length - 1);
+        MaintainHierArchyAfterInsertion(length - 1);
+        return temp;
     }
 
     int Delete()
@@ -117,19 +120,19 @@ public:
             return -1;
         }
 
-        int temp = heapArr[0];
+        Node *temp = heapArr[0];
         Swap(0, length - 1);
         heapArr.pop_back();
         length -= 1;
-        MaintainHeigherArchyAfterDeletion(0);
-        return temp;
+        MaintainHierArchyAfterDeletion(0);
+        return temp->priority;
     }
 
-    int FindxMin()
+    Node *GetTop()
     {
         if (length == 0)
         {
-            return -1;
+            return nullptr;
         }
         return heapArr[0];
     }

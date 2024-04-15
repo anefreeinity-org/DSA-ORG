@@ -49,7 +49,7 @@ private:
         return 1;
     }
 
-    void MaintainHeigherArchyAfterInsertation(int index)
+    void MaintainHeigherArchyAfterInsertion(int index)
     {
         if (index == 0)
         {
@@ -61,7 +61,7 @@ private:
         if (heapArr[currentParentIndex] < heapArr[index])
         {
             Swap(index, currentParentIndex, false);
-            MaintainHeigherArchyAfterInsertation(currentParentIndex);
+            MaintainHeigherArchyAfterInsertion(currentParentIndex);
         }
     }
 
@@ -107,7 +107,7 @@ public:
     {
         heapArr.push_back(data);
         length++;
-        MaintainHeigherArchyAfterInsertation(length - 1);
+        MaintainHeigherArchyAfterInsertion(length - 1);
     }
 
     int Delete()
@@ -125,7 +125,7 @@ public:
         return temp;
     }
 
-    int FindxMax()
+    int FindMax()
     {
         if (length == 0)
         {
